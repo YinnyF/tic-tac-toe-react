@@ -28,16 +28,14 @@ class Board extends React.Component {
     return (
       <div>
         {[...Array(n)].map((x, i) => {
-          return ( 
+          return (
             <div className="board-row" key={i}>
               {[...Array(n)].map((y, j) => {
-                position++
-                return (
-                  this.renderSquare(position)
-                )
+                position++;
+                return this.renderSquare(position);
               })}
             </div>
-          )
+          );
         })}
       </div>
     );
@@ -56,6 +54,7 @@ class Game extends React.Component {
       ],
       stepNumber: 0,
       xIsNext: true,
+      isDesc: true,
     };
   }
 
@@ -91,6 +90,10 @@ class Game extends React.Component {
     });
   }
 
+  updateSort() {
+    this.setState({ isDesc: !this.state.isDesc });
+  }
+
   jumpTo(step) {
     this.setState({
       stepNumber: step,
@@ -108,7 +111,7 @@ class Game extends React.Component {
         ? "Go to move #" + move + ` @ (${step.locations[0]}, ${step.locations[1]})`
         : "Go to game start";
       return (
-        <li key={move}>
+        <li key={move} value={move + 1}>
           <button onClick={() => this.jumpTo(move)}>
             {move === this.state.stepNumber ? <b>{desc}</b> : desc}
           </button>
@@ -133,7 +136,12 @@ class Game extends React.Component {
         </div>
         <div className="game-info">
           <div>{status}</div>
-          <ol>{moves}</ol>
+          
+          <ol>{this.state.isDesc ? moves : moves.reverse()}</ol>
+
+          <button onClick={() => this.updateSort()}>
+            Sort {this.state.isDesc ? "Descending" : "Ascending"}
+          </button>
         </div>
       </div>
     );
