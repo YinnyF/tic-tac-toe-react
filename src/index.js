@@ -1,3 +1,4 @@
+import { dblClick } from "@testing-library/user-event/dist/click";
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
@@ -50,6 +51,7 @@ class Game extends React.Component {
       history: [
         {
           squares: Array(9).fill(null),
+          locations: Array(9).fill(null),
         },
       ],
       stepNumber: 0,
@@ -61,6 +63,18 @@ class Game extends React.Component {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
+    const locations = [
+      [1, 1],
+      [2, 1],
+      [3, 1],
+      [1, 2],
+      [2, 2],
+      [3, 2],
+      [1, 3],
+      [2, 3],
+      [3, 3],
+    ];
+
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
@@ -69,6 +83,7 @@ class Game extends React.Component {
       history: history.concat([
         {
           squares: squares,
+          locations: locations[i],
         },
       ]),
       stepNumber: history.length,
@@ -89,7 +104,9 @@ class Game extends React.Component {
     const winner = calculateWinner(current.squares);
 
     const moves = history.map((step, move) => {
-      const desc = move ? "Go to move #" + move : "Go to game start";
+      const desc = move
+        ? "Go to move #" + move + ` @ (${step.locations[0]}, ${step.locations[1]})`
+        : "Go to game start";
       return (
         <li key={move}>
           <button onClick={() => this.jumpTo(move)}>{desc}</button>
