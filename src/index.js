@@ -111,6 +111,7 @@ class Game extends React.Component {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
+    const draw = !current.squares.includes(null);
 
     const moves = history.map((step, move) => {
       const desc = move
@@ -128,6 +129,8 @@ class Game extends React.Component {
     let status;
     if (winner) {
       status = "Winner: " + winner.winner;
+    } else if (draw) {
+      status = "It's a draw!";
     } else {
       status = "Next player: " + (this.state.xIsNext ? "X" : "O");
     }
