@@ -18,15 +18,15 @@ A react tutorial from reactjs.org
 
 ## Examples
 <div style="width: 340px;">
-Winning move:
+Winning move:<br>
   <img src="public/screenshots/1-winner.png" />
 
-History of moves:
+History of moves:<br>
   <img src="public/screenshots/2-movehistory.png" />
 
-Sort moves:
+Sort moves:<br>
   <img src="public/screenshots/3-sort.png" />
 
-Draw game:
+Draw game:<br>
   <img src="public/screenshots/4-draw.png" />
 </div>
