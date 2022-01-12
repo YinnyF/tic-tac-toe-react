@@ -15,3 +15,18 @@ A react tutorial from reactjs.org
 * ✅ Add a toggle button that lets you sort the moves in either ascending or descending order.
 * ✅ When someone wins, highlight the three squares that caused the win.
 * ✅ When no one wins, display a message about the result being a draw.
+
+## Examples
+<div style="width: 340px;">
+Winning move:
+  <img src="public/screenshots/1-winner.png" />
+
+History of moves:
+  <img src="public/screenshots/2-movehistory.png" />
+
+Sort moves:
+  <img src="public/screenshots/3-sort.png" />
+
+Draw game:
+  <img src="public/screenshots/4-draw.png" />
+</div>
